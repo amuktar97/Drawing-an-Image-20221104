@@ -11,7 +11,7 @@ appWidth = width;
 appHeight = height;
 //
 //Population
-pic = loadImage("../Image Used/Aliko_Dangote.jpg");
+pic = loadImage("../Image Used/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg");
 imageBackgroundX = appWidth*0;
 imageBackgroundY = appHeight*0;
 imageBackgroundWidth = appWidth-1;
