@@ -9,7 +9,7 @@ float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundH
 PImage pic;
 Boolean nightMode=false;
 //
-size(800, 600); //Landscape
+size(1000, 800); //Landscape
 //Copy Display Orientation
 appWidth = width;
 appHeight = height;
@@ -34,23 +34,25 @@ if ( picWidth >= picHeight ) { //True if Landscape or Square
  if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
  if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
  */
-//Better Image Stretch Algorithm
-float picWidthAdjusted, picHeightAdjusted;
+float picWidthAdjusted=0.0, picHeightAdjusted=0.0;
 //Better Iamge Stretch Algorithm
 if ( appWidth >= picWidth ) {
   picWidthAdjusted = picWidth;
-} else {
   if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
   if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
+} else {
+  //Image smaller than CANVAS needs separate algorithm
 }
 if ( appHeight >= picHeight ) {
-  picWidthAdjusted = picWidth;
-} else {
+  picHeightAdjusted = picHeight;
   if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
   if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
+} else {
+  //Image smaller than CANVAS needs separate algorithm
 }
-picWidthAdjusted = appWidth * imageWidthRatio;
-picHeightAdjusted = appHeight * imageHeightRatio;
+
+//picWidthAdjusted = appWidth * imageWidthRatio;
+//picHeightAdjusted = appHeight * imageHeightRatio;
 //
 //Developer verified variables
 println (appWidth, picWidth, picWidthAdjusted);
