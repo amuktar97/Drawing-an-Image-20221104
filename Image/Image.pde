@@ -3,12 +3,13 @@
 //Global Variables
 int appWidth, appHeight;
 float smallerDimension, largerDimension;
-Boolean widthLarger=false, heightLarger;
+Boolean widthLarger=false, heightLarger=false;
+float imageWidthRatio=0.0, imageHeightRatio=0.0;
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 PImage pic;
 Boolean nightMode=false;
 //
-size(400, 400); //Landscape
+size(800, 600); //Landscape
 //Copy Display Orientation
 appWidth = width;
 appHeight = height;
@@ -19,22 +20,41 @@ int picWidth = 1028;
 int picHeight = 432;
 //Image orientation: Landscape, Portrait, Square
 if ( picWidth >= picHeight ) { //True if Landscape or Square
-largerDimension = picWidth;
-smallerDimension = picHeight;
-widthLarger = true;
-} else {I//False if Portrait
-laragerDimension = picHeight;
-smallerDimension = picWidth;
-heightLarger = true;
+ largerDimension = picWidth;
+ smallerDimension = picHeight;
+ widthLarger = true;
+} else { //False if Portrait
+ largerDimension = picHeight;
+ smallerDimension = picWidth;
+ heightLarger = true;
 }
+/* Older algorithm
+ if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
+ if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
+ if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
+ if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
+ */
+//Better Image Stretch Algorithm
+float picWidthAdjusted, picHeightAdjusted;
+//Better Iamge Stretch Algorithm
+if ( appWidth >= picWidth ) {
+  picWidthAdjusted = picWidth;
+} else {
+  if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
+  if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
+}
+if ( appHeight >= picHeight ) {
+  picWidthAdjusted = picWidth;
+} else {
+  if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
+  if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
+}
+picWidthAdjusted = appWidth * imageWidthRatio;
+picHeightAdjusted = appHeight * imageHeightRatio;
 //
-if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
-if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
-if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
-if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
-//
-picWidthAdjusted = picWidth * imageWidthRatio;
-picHeightAdjusted = picheight = imageHeightratio;
+//Developer verified variables
+println (appWidth, picWidth, picWidthAdjusted);
+println (appHeight,picHeight, picHeightAdjusted);
 //
 //Population
 pic = loadImage("../Image Used/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg");
