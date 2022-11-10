@@ -8,7 +8,7 @@ float backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted;
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 PImage pic;
 Boolean nightMode=false;
-int tinDayMode=255, tintDayModeOpacity=50;
+int tintDayMode=255, tintDayModeOpacity=50;
 //
 void setup()
 {
@@ -92,7 +92,7 @@ void mousePressed() {
    if (mouseButton == LEFT) {
      nightMode = true;
      rect( backgroundImageX, backgroundImageY, imageBackgroundWidth, imageBackgroundHeight );
-     tint(255, 50); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+     tint(tintDayMode, tintDayModeOpacity); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
      image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
      //
    }
