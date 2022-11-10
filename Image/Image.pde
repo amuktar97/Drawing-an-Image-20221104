@@ -8,10 +8,11 @@ float backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted;
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 PImage pic;
 Boolean nightMode=false;
+int tinDayMode=255, tintDayModeOpacity=50;
 //
 void setup()
 {
-  size(1000, 800); //Landscape
+  size(800, 600); //Landscape
   //Copy Display Orientation
   appWidth = width;
   appHeight = height;
@@ -70,7 +71,7 @@ void setup()
   imageBackgroundHeight = appHeight-1;
   //
   //Rectangle Layout and Image drawing to CANVAS
-  //rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
+  rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
   //
   //Background Image must be single executed code
   if (nightMode == false) tint(255, 50); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
@@ -81,17 +82,26 @@ void setup()
 //
 void draw() 
 {
-  if (nightMode == true) {
-    //RGB tint() works in draw()
-    tint(64, 64, 40); //RGB: Night Mode
-    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
-  }
+ 
 }//End draw
 void keyPressed() {
 }//End keyPressed
 void mousePressed() {
-  if (mouseButton == LEFT) nightMode = true;
-  if (mouseButton == RIGHT) nightMode = false;
+   //
+   //Mouse Pressed will control background image
+   if (mouseButton == LEFT) {
+     nightMode = true;
+     rect( backgroundImageX, backgroundImageY, imageBackgroundWidth, imageBackgroundHeight );
+     tint(255, 50); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+     image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+     //
+   }
+  if (mouseButton == RIGHT) {
+    nightMode = false;
+    rect( backgroundImageX, backgroundImageY, imageBackgroundWidth, imageBackgroundHeight );
+    tint(64, 64, 40, 85); //RGB: Night Mode
+    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+  }
 }//End mousePressed
 //
 //End Main Program
